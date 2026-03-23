@@ -1,19 +1,59 @@
 [project]
-name = "distload"
+name = "softlabels"
 version = "0.1.0"
-description = ""
+description = "Async on-the-fly training data generation pipeline for PyTorch"
 authors = [
     {name = "Ayoub G.",email = "git@ayghri.me"}
 ]
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.11,<3.14"
 dependencies = [
+    "pyzmq (>=27.1.0,<28.0.0)",
+    "torch (>=2.9.1,<3.0.0)",
+    "msgpack (>=1.0.0,<2.0.0)",
+    "numpy (>=1.26.0,<3.0.0)",
+    "pyyaml (>=6.0,<7.0)"
 ]
 
-[tool.poetry]
-packages = [{include = "distload", from = "./"}]
+[project.optional-dependencies]
+docs = [
+    "sphinx>=7.0,<9.0",
+    "furo",
+    "sphinx-autodoc-typehints<3.0",
+]
+dev = [
+    "pytest>=9.0.2,<10.0.0",
+    "sphinx>=7.0,<9.0",
+    "furo",
+    "sphinx-autodoc-typehints<3.0",
+]
+examples = [
+    "hydra-core>=1.3",
+    "omegaconf>=2.3",
+    "transformers>=4.40",
+    "datasets>=2.0",
+    "tqdm",
+]
 
+[project.urls]
+Documentation = "https://softlabels.readthedocs.io"
+Repository = "https://github.com/yourusername/softlabels"
+
+[tool.poetry]
+packages = [{include = "softlabels", from = "./"}]
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^9.0.2"
+furo = "^2025.9.25"
+sphinx = ">=7.0,<9.0"
+sphinx-autodoc-typehints = "<3.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]

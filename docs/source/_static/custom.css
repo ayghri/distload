@@ -1,0 +1,7 @@
+/* Keep all sidebar toctree items expanded, hide all collapse controls */
+.sidebar-tree ul { display: block !important; }
+.sidebar-tree input[type="checkbox"] { display: none !important; }
+.toctree-checkbox~label .icon svg {
+    transform: rotate(90deg);
+    visibility: hidden;
+}
